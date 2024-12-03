@@ -7,7 +7,7 @@ const VideoCard = ({info}) => {
   const {channelTitle,thumbnails, title} = snippet;
 
   return (
-    <div className='p-2 m-2 border border-gray-200 w-80  rounded-lg'>
+    <div className='p-2 m-2 border border-gray-200 w-80  rounded-xl'>
       <img alt="title" src={thumbnails.medium.url}/>
       <div>
         <ul>
@@ -16,6 +16,14 @@ const VideoCard = ({info}) => {
           <li>{viewCount}</li>
         </ul>
       </div>
+    </div>
+  )
+}
+
+export const AdVideoCard = ({info}) => {
+  return (
+    <div className='p-1 m-1 bg-gray-300 rounded-xl'>
+      <VideoCard info={info}/>
     </div>
   )
 }
