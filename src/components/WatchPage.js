@@ -1,17 +1,35 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { closeMenu } from '../utils/appSlice';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { closeMenu } from "../utils/appSlice";
+import { useParams, useSearchParams } from "react-router-dom";
 
 const WatchPage = () => {
+  const params = useParams();
+  console.log(params);
+
+  const [searchParams] = useSearchParams();
+  console.log(searchParams.get("v"));
   const dispatch = useDispatch();
-  useEffect(() =>{
+  useEffect(() => {
     dispatch(closeMenu());
-  })
+  });
+  // const videoId = searchParams.get("v");
   return (
-    <div>
-      WatchPage
+    <div className="p-4 m-4 ">
+      <iframe
+        width="560"
+        height="315"
+        src= {"https://www.youtube.com/embed/" + searchParams.get("v") + "?si=l7PLO2v6dvp1XGBg"}
+        title="YouTube video player"
+        // frameborder="0"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        // allowfullscreen
+        allowFullScreen
+      ></iframe>
     </div>
-  )
-}
+  );
+};
 
 export default WatchPage;
