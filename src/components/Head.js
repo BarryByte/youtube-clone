@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import searchIcon from "../assets/search-icon.svg";
+import { cacheResults } from "../utils/searchSlice";
+
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const searchCache = useSelector((store) => store.search);
+  console.log(searchCache);
 
   const getSearchSuggestions = async () => {
     console.log(searchQuery);
@@ -13,12 +19,26 @@ const Head = () => {
     );
     const json = await data.json();
     console.log(json[1]);
+    // set the suggestions
     setSuggestions(json[1]);
+
+    //update cache
+    dispatch(
+      cacheResults({
+        [searchQuery]: json[1],
+      })
+    );
   };
   // useEffect for api call
   useEffect(() => {
     // make an api call after every key press
-    const timer = setTimeout(() => getSearchSuggestions(), 200);
+    const timer = setTimeout(() => {
+      if (searchCache[searchQuery]) {
+        setSuggestions(searchCache[searchQuery]);
+      } else {
+        getSearchSuggestions();
+      }
+    }, 200);
 
     return () => {
       clearTimeout(timer);
@@ -84,33 +104,38 @@ const Head = () => {
             className=" border border-gray-500 rounded-l-lg p-2 w-96"
             placeholder="Search"
             type="text"
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
           />
           <button className=" border border-gray-500 rounded-r-lg p-2">
             {" "}
             🔍
           </button>
-          <div className=" fixed  px-3  bg-white  w-96 rounded-lg border border-gray-300 shadow-lg ">
-            <ul>
-              {suggestions.map((x) => {
-                return (
-                  <div className="flex gap-2">
-                    <img
-                      alt="search-icon"
-                      src={searchIcon}
-                      width="18"
-                      height="18"
-                    />
-                    <li
-                      key={x}
-                      className="shadow-orange-100 py-1 hover:bg-gray-100"
-                    >
-                      {x}
-                    </li>
-                  </div>
-                );
-              })}
-            </ul>
-          </div>
+
+          {showSuggestions && (
+            <div className=" fixed  px-3  bg-white  w-96 rounded-lg border border-gray-300 shadow-lg ">
+              <ul>
+                {suggestions.map((x) => {
+                  return (
+                    <div className="flex gap-2">
+                      <img
+                        alt="search-icon"
+                        src={searchIcon}
+                        width="18"
+                        height="18"
+                      />
+                      <li
+                        key={x}
+                        className="shadow-orange-100 py-1 hover:bg-gray-100"
+                      >
+                        {x}
+                      </li>
+                    </div>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
 
