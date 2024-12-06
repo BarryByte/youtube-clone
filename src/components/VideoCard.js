@@ -31,7 +31,9 @@ export const AdVideoCard = ({ info }) => {
   return (
     <div className=" bg-gradient-to-r from-yellow-100 to-yellow-300 border border-yellow-400 rounded-lg">
       <VideoCard info={info} />
+      <p className="ml-4 font-extralight">Ad</p>
     </div>
+
   );
 };
 
