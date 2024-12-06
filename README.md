@@ -1,21 +1,13 @@
-# Comments UI Component
+# YouTube Clone
 
-This project is a **React-based Comments UI Component** that displays a threaded comments section. It supports hierarchical comments with nested replies and enhances user experience with a clean and responsive design.
-
-## Features
-- **Dynamic Comments Rendering**: Handles nested comments and replies.
-- **Responsive Design**: Adapts to various screen sizes.
-- **Interactive Styling**: Highlights individual comments with hover effects.
-- **Reusable Components**: Modular design for easy integration into other projects.
-
-## Components
-1. **`Comment`**: Displays an individual comment with a profile icon, name, and text.
-2. **`CommentsList`**: Recursively renders a list of comments and their replies.
-3. **`CommentsContainer`**: The main container that houses the comments section.
+This is a **YouTube Clone** built using React, allowing users to watch videos, explore trending content, and engage with comments. The app replicates core features of YouTube like video browsing, embedding, and a comment section.
 
 ## Technologies Used
-- **React**: Core library for building the UI.
-- **Tailwind CSS**: For styling and responsiveness.
-- **JavaScript**: Logic implementation for dynamic rendering.
+- **React**: For building the UI and managing state.
+- **Redux**: For state management.
+- **Tailwind CSS**: For responsive styling.
+- **Vercel**: For deployment.
+- **YouTube Data API**: To fetch videos.
 
-
+## Deployed Link
+Check out the live app [here](https://youtube-clone-qiwzxoerb-barrybytes-projects.vercel.app/).
