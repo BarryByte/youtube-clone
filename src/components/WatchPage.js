@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { closeMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
+import CommentsContainer from "./CommentsContainer";
 
 const WatchPage = () => {
   // const params = useParams();
@@ -15,7 +16,8 @@ const WatchPage = () => {
   });
   // const videoId = searchParams.get("v");
   return (
-    <div className="p-2 m-4 ">
+    <div className="p-2 m-4 flex flex-col">
+    <div className="">
       <iframe
         width="1280"
         height="720"
@@ -33,6 +35,11 @@ const WatchPage = () => {
         allowFullScreen
       ></iframe>
     </div>
+    <div >
+        <CommentsContainer/>
+    </div>
+    </div>
+
   );
 };
 
