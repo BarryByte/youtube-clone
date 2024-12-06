@@ -142,32 +142,40 @@ const commentsData = [
 const Comment = ({ data }) => {
   const { name, text, replies } = data;
   return (
-    <div className="flex rounded-lg shadow-lg bg-gray-200 p-2 mb-1">
-      <img alt="profle-icon" src={profileIcon} height={30} width={30} />
-      <div className="px-3">
-        <p className="font-semibold">{name}</p>
-        <p>{text}</p>
+    <div className="flex items-start gap-3 p-4 mb-4 bg-gray-100 rounded-lg shadow-sm hover:shadow-lg">
+      <img
+        alt="profile-icon"
+        src={profileIcon}
+        className="h-10 w-10 rounded-full border border-gray-300"
+      />
+      <div className="flex flex-col">
+        <p className="font-semibold text-gray-700">{name}</p>
+        <p className="text-gray-600">{text}</p>
       </div>
     </div>
   );
 };
 
 const CommentsList = ({ comments }) => {
+
   if (!comments || comments.length === 0) return null;
+
   return comments.map((comment, index) => (
-    <div>
-      <Comment key={index} data={comment} />
-      <div className="pl-5 border border-l-black ml-5">
-        <CommentsList comments={comment.replies}/>
-      </div>
+    <div key={index} className="pl-5">
+      <Comment data={comment} />
+      {comment.replies && (
+        <div className="pl-5 border-l-2 border-gray-300">
+          <CommentsList comments={comment.replies} />
+        </div>
+      )}
     </div>
   ));
 };
 
 const CommentsContainer = () => {
   return (
-    <div className="m-5 p-2">
-      <h1 className="text-2xl font-bold">Comments : </h1>
+    <div className="m-5 p-4 bg-white rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold text-gray-800 mb-5">Comments</h1>
       <CommentsList comments={commentsData} />
     </div>
   );

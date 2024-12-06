@@ -15,16 +15,16 @@ const VideoContainer = () => {
     const data = await fetch(process.env.REACT_APP_YOUTUBE_VIDEOS_API);
 
     const json = await data.json();
-    console.log(json.items);
+    // console.log(json.items);
     setVideos(json.items);
   };
 
   return (
-    <div className="flex flex-wrap ">
+    <div className="flex flex-wrap gap-4 justify-center p-4 bg-gray-50">
       {videos[0] && <AdVideoCard info={videos[0]} />}
       {/* <VideoCard info={videos[0]}/> */}
       {videos.map((video) => (
-        <Link to={"/watch/?v=" + video.id}>
+        <Link to={"/watch/?v=" + video.id} className="hover:scale-105 transition-transform">
           <VideoCard key={video.id} info={video} />
         </Link>
       ))}

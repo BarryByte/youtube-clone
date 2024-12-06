@@ -10,15 +10,15 @@ const Head = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const searchCache = useSelector((store) => store.search);
-  console.log(searchCache);
+  // console.log(searchCache);
 
   const getSearchSuggestions = async () => {
-    console.log(searchQuery);
+    // console.log(searchQuery);
     const data = await fetch(
       process.env.REACT_APP_YOUTUBE_SEARCH_API + searchQuery
     );
     const json = await data.json();
-    console.log(json[1]);
+    // console.log(json[1]);
     // set the suggestions
     setSuggestions(json[1]);
 
@@ -76,7 +76,7 @@ const Head = () => {
   };
 
   return (
-    <div className="flex border border-gray-200 justify-between ">
+    <div className="flex border border-gray-200 justify-between items-center ">
       {/* 3 parts */}
       <div className="p-2 m-2 flex ">
         <img
@@ -88,14 +88,13 @@ const Head = () => {
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/800px-Hamburger_icon.svg.png"
         />
         <img
-          height={8}
-          width={300}
+          className="h-8"
           alt="youtube-logo"
           src="https://cdn.worldvectorlogo.com/logos/youtube-6.svg"
         />
       </div>
 
-      <div className="flex h-10 mt-5 ">
+      <div className="flex h-10  ">
         <div>
           <input
             // tie with state variable.
@@ -139,8 +138,9 @@ const Head = () => {
         </div>
       </div>
 
-      <div className="p-2 m-2 ">
+      <div className="flex items-center gap-4 mr-4">
         <img
+        className="w-8 h-8 rounded-full border-2 border-white"
           height={20}
           width={20}
           alt="profile"
