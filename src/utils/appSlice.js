@@ -1,3 +1,4 @@
+// This slice manages the application menu's open/close state.
 import { createSlice } from  "@reduxjs/toolkit";
 
 const appSlice = createSlice({
@@ -7,6 +8,7 @@ const appSlice = createSlice({
   }
   ,
   reducers : {
+    // Reducer functions for handling actions in the app slice.
     toggleMenu : (state) => {
       state.isMenuOpen = !state.isMenuOpen
     },

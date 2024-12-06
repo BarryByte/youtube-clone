@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import VideoCard, { AdVideoCard } from './VideoCard';
-import { Link } from 'react-router-dom';
-
+import React, { useEffect, useState } from "react";
+import VideoCard, { AdVideoCard } from "./VideoCard";
+import { Link } from "react-router-dom";
 
 const VideoContainer = () => {
   // state variable that holds the list of videos fetched from the api
@@ -9,7 +8,7 @@ const VideoContainer = () => {
 
   useEffect(() => {
     getVideos();
-  },[])
+  }, []);
 
   const getVideos = async () => {
     // const data = await fetch (process.env.YOUTUBE_VIDEOS_API);
@@ -17,16 +16,20 @@ const VideoContainer = () => {
 
     const json = await data.json();
     console.log(json.items);
-    setVideos(json.items)
-  }
+    setVideos(json.items);
+  };
 
   return (
-    <div className='flex flex-wrap '>
-      {videos[0] && <AdVideoCard info={videos[0]}/>}
+    <div className="flex flex-wrap ">
+      {videos[0] && <AdVideoCard info={videos[0]} />}
       {/* <VideoCard info={videos[0]}/> */}
-      {videos.map((video) => <Link to={"/watch/?v=" + video.id}><VideoCard key={video.id} info={video}/></Link>)}
+      {videos.map((video) => (
+        <Link to={"/watch/?v=" + video.id}>
+          <VideoCard key={video.id} info={video} />
+        </Link>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default VideoContainer
+export default VideoContainer;

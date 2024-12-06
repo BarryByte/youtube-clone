@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { closeMenu } from "../utils/appSlice";
-import {  useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const WatchPage = () => {
   // const params = useParams();
@@ -19,7 +19,11 @@ const WatchPage = () => {
       <iframe
         width="1280"
         height="720"
-        src= {"https://www.youtube.com/embed/" + searchParams.get("v") + "?si=l7PLO2v6dvp1XGBg"}
+        src={
+          "https://www.youtube.com/embed/" +
+          searchParams.get("v") +
+          "?si=l7PLO2v6dvp1XGBg"
+        }
         title="YouTube video player"
         // frameborder="0"
         frameBorder="0"

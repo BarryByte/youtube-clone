@@ -9,7 +9,9 @@ const Sidebar = () => {
     <div className="p-3 m-3 w-max border border-gray-400">
       <div>
         <ul>
-          <li><Link to={"/"}>🏠Home</Link></li>
+          <li>
+            <Link to={"/"}>🏠Home</Link>
+          </li>
           <li>🎞Shorts</li>
           <li>📈Subscription</li>
         </ul>
